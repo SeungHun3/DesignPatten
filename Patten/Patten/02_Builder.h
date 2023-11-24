@@ -5,12 +5,22 @@
 
 using namespace std;
 
+struct HtmlBuilder;
+
 struct HtmlElement
 {
 	string name;
 	string text;
 	vector<HtmlElement> elements;
+	const size_t inded_size = 2;
 
+	// Builder로만 생성 강제
+	static unique_ptr<HtmlBuilder> build(const string& root_name)
+	{
+		return make_unique<HtmlBuilder>(root_name);
+	}
+
+protected:
 	HtmlElement() {}
 	HtmlElement(const string& name, const string& text)
 		: name{ name }
@@ -18,6 +28,9 @@ struct HtmlElement
 	{
 
 	}
+	friend struct HtmlBuilder;
+
+public:
 	string str(int indent = 0)
 	{
 		string result = string(indent, ' ') + "<" + name + ">\n";
@@ -39,7 +52,8 @@ struct HtmlElement
 
 struct HtmlBuilder
 {
-	HtmlElement root; 
+
+	HtmlElement root;
 
 	HtmlBuilder(string root_name) { root.name = root_name; }
 	// 단순빌더

@@ -25,16 +25,20 @@ int main()
 
 	// builder
 	
-	// ´Ü¼ø ºô´õ
-	HtmlBuilder simplebuilder{ "ul" };
-	simplebuilder.add_Simple_child("li", "hello");
-	simplebuilder.add_Simple_child("li", "world");
-	cout << simplebuilder.str() << endl;
+	//// ´Ü¼ø ºô´õ
+	//HtmlBuilder simplebuilder{ "ul" };
+	//simplebuilder.add_Simple_child("li", "hello");
+	//simplebuilder.add_Simple_child("li", "world");
+	//cout << simplebuilder.str() << endl;
+	//
+	//// Èå¸§½Ä ºô´õ
+	//HtmlBuilder flowbuilder{ "ul" };
+	//flowbuilder.add_Flow_child("li", "hello").add_Flow_child("li", "wolrd");
+	//cout << flowbuilder.str() << endl;
 
-	// Èå¸§½Ä ºô´õ
-	HtmlBuilder flowbuilder{ "ul" };
-	flowbuilder.add_Flow_child("li", "hello").add_Flow_child("li", "wolrd");
-	cout << flowbuilder.str() << endl;
 	// ºô´õ °­Á¦½ÃÅ°±â
+	HtmlBuilder static_builder = HtmlElement::build("ul")->add_Flow_child("li", "hello").add_Flow_child("li", "wolrd");
+	cout << static_builder.str() << endl;
+
 	return 0;
 }
