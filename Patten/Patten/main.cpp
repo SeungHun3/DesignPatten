@@ -41,7 +41,7 @@ int main()
 	cout << static_builder.str() << endl;
 
 	auto TagBuilder =  P{ IMG{ "http:aaaa"} };
-
+	cout << P{ IMG{ "http:aaaa"} } << endl;
 
 	return 0;
 }

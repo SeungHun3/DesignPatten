@@ -82,9 +82,41 @@ struct Tag
 	vector<Tag> children;
 	vector<pair<string, string>> attributes;
 
-	friend ostream& operator<<(ostream & os, const Tag& tag)
+
+	// 일반함수를 통한 연산자 오버로딩 == 이 일반함수는 멤버함수가 아닌 전역함수로써 멤버접근에 불가함 따라서 friend 선언을 꼭 해줘야함
+	// 오버로딩 사용법 https://showmiso.tistory.com/32
+	Tag operator+(const Tag& tag/*Right*/)
 	{
-		
+		string test_name = name + tag.name;
+		return Tag(test_name, ""); // 임시객체 생성 후 반환시 삭제 // 삭제 원치 않는다면 Tag&로 *this 반환
+	}
+
+	friend ostream& operator<<(ostream & os/*Left*/, const Tag& tag/*Right*/)
+	{
+		os << "<" << tag.name;
+
+		for (const auto& attr : tag.attributes)
+		{
+			os << " " << attr.first << "=\"" << attr.second << "\"";
+		}
+
+		if (tag.children.empty() && tag.text.empty())
+		{
+			os << "/>";
+		}
+		else
+		{
+			os << ">";
+
+			for (const auto& child : tag.children)
+			{
+				os << child;
+			}
+
+			os << tag.text << "</" << tag.name << ">";
+		}
+
+		return os;
 	}
 
 protected:
