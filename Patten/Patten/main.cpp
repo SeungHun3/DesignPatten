@@ -1,8 +1,9 @@
 #include <iostream>
-#include "Solid_Patten.h"
+#include "01_Solid_Patten.h"
 #include "02_Builder.h"
 int main()
 {
+	// 01. Solid Patten
 	// SRP
 	Journal j{ "Dirary" };
 	j.add("i win");
@@ -23,7 +24,7 @@ int main()
 		cout << x->name << " is green" << endl;
 	}
 
-	// builder
+	// 02. builder
 	
 	//// 단순 빌더
 	//HtmlBuilder simplebuilder{ "ul" };
@@ -40,8 +41,14 @@ int main()
 	HtmlBuilder static_builder = HtmlElement::build("ul")->add_Flow_child("li", "hello").add_Flow_child("li", "wolrd");
 	cout << static_builder.str() << endl;
 
+
+	// 그루비 스타일 빌더
 	auto TagBuilder =  P{ IMG{ "http:aaaa"} };
 	cout << P{ IMG{ "http:aaaa"} } << endl;
+	cout << TagBuilder << endl;
+
+
+
 
 	return 0;
 }
