@@ -38,14 +38,14 @@ public:
 		{
 			result += string(indent + 2, ' ') + text + "\n";
 		}
-		
+
 		for (auto& e : elements)
 		{
 			result += e.str(indent + 2);
 		}
-		
+
 		result += string(indent, ' ') + "</" + name + ">\n";
-		
+
 		return result;
 	}
 };
@@ -70,5 +70,61 @@ struct HtmlBuilder
 	}
 
 	string str() { return root.str(); }
+
+};
+
+
+// 그루비 스타일 빌더
+struct Tag
+{
+	string name;
+	string text;
+	vector<Tag> children;
+	vector<pair<string, string>> attributes;
+
+	friend ostream& operator<<(ostream & os, const Tag& tag)
+	{
+		
+	}
+
+protected:
+	Tag(const string& name, const string& text)
+		: name{name}
+		, text{text}
+	{
+
+	}
+
+	Tag(const string& name, const vector<Tag>& children)
+		: name{ name }
+		, children{ children }
+	{
+
+	}
+
+};
+
+struct P : Tag
+{
+
+	explicit P(const string& text)
+		: Tag{"p", text}
+	{
+
+	}
+	P(initializer_list<Tag> children)
+		: Tag("p",children)
+	{
+
+	}
+};
+
+struct IMG : Tag
+{
+	explicit IMG(const string& url)
+		:Tag{ "img","" }
+	{
+		attributes.emplace_back("src", url);
+	}
 
 };

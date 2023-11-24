@@ -40,5 +40,8 @@ int main()
 	HtmlBuilder static_builder = HtmlElement::build("ul")->add_Flow_child("li", "hello").add_Flow_child("li", "wolrd");
 	cout << static_builder.str() << endl;
 
+	auto TagBuilder =  P{ IMG{ "http:aaaa"} };
+
+
 	return 0;
 }
