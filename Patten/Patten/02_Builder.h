@@ -168,7 +168,7 @@ struct IMG : Tag
 
 class PersonAddressBuilder;
 class PersonJobBuilder;
-
+class PersonBuilder;
 // PersonBulider 통해 객체 생성하기
 class Person
 {
@@ -184,10 +184,7 @@ public:
 private:
 	Person(){}
 public:
-	static PersonBuilder create()
-	{
-		return PersonBuilder{};
-	}
+	static PersonBuilder create(); // return PersonBuilder{};
 
 	Person(Person&& other)
 		: street_address{ move(other.street_address) },
@@ -241,14 +238,8 @@ public:
 	}
 
 	// 하위빌더의 인터페이스를 리턴
-	PersonAddressBuilder lives() const
-	{
-		return PersonAddressBuilder{ person };
-	}
-	PersonJobBuilder works() const
-	{
-		return PersonJobBuilder{ person };
-	}
+	PersonAddressBuilder lives() const; // return PersonAddressBuilder{ person };
+	PersonJobBuilder works() const;		// return PersonJobBuilder{ person };
 	// 하위 빌더에서 각각 주소, 직업정보를 초기화
 };
 
