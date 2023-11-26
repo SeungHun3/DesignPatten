@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="02_Builder.cpp" />
     <ClCompile Include="02_Builder_main.h" />
+    <ClCompile Include="03_Factory.cpp" />
     <ClCompile Include="03_Factory_main.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

@@ -46,5 +46,8 @@
     <ClCompile Include="02_Builder.cpp">
       <Filter>Chapter</Filter>
     </ClCompile>
+    <ClCompile Include="03_Factory.cpp">
+      <Filter>Chapter</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
