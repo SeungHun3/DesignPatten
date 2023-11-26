@@ -1,7 +1,5 @@
 #include "03_Factory.h"
 
-
-
 unique_ptr<HotDrink> make_drink(string type)
 {
 	unique_ptr<HotDrink> drink;
@@ -20,6 +18,9 @@ unique_ptr<HotDrink> make_drink(string type)
 
 void factory_main()
 {
+	cout << "===========================" << endl;
+	cout << "Inner, Outter Factory" << endl;
+	// 내부, 외부 팩토리
 	Point p = Point::NewPolar(5.f, 3.14f);
 	p.cout_x_y();
 	Point p2 = outter_Factory::NewCartesian(5.f, 1.f);
@@ -27,7 +28,17 @@ void factory_main()
 	Point p3 = Point::Factory_inner.NewCartesian(4.f, 2.f);
 	p3.cout_x_y();
 
+	cout << "===========================" << endl;
+	cout << "Virtual Factory" << endl;
+	// 추상팩토리
 	auto d = make_drink("tea"); 
 	auto drink_factory = make_unique<DrinkFactory>();
 	auto tea = drink_factory->make_drink("hot_tea");
+
+	cout << "===========================" << endl;
+	cout << "Functional Factory" << endl;
+	// 함수형 팩토리
+	auto funcFactory = make_unique<DrinkWithVolumeFactory>();
+	auto funcTea = funcFactory->make_drink("hot_tea");
+	auto funcCoffee = funcFactory->make_drink("hot_coffee");
 }

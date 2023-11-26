@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <functional>
 #include <map>
 using namespace std;
 void factory_main();
@@ -160,6 +161,7 @@ struct TeaFactory : HotDrinkFactory
 };
 
 // 차가운 음료도 만들 수 있게 여러 팩토리들의 참조를 내부에 가질 수 있는 팩토리 클래스 구현
+// 1개의 팩토리에서  다수의 팩토리를 가짐
 class DrinkFactory
 {
 	map<string, unique_ptr<HotDrinkFactory>> hot_factories;
@@ -177,5 +179,36 @@ public:
 		auto drink = hot_factories[name]->make();
 		drink->prepare(200);
 		return drink;
+	}
+};
+
+
+// 함수형 팩토리
+// 다양한 팩토리의 구현을 하나의 팩토리에서 모두 처리하기에 복잡도를 줄일 수 있음
+class DrinkWithVolumeFactory
+{
+private:
+	map<string, function<unique_ptr<HotDrink>()>> factories;
+
+public:
+	DrinkWithVolumeFactory()
+	{
+		factories["hot_tea"] = [] {
+			// 람다함수에서 생성과 진행 과정을 거친 후 반환객체를 map factories에 넣어줌
+			// => factories["hot_tea"]가 호출되면 내장되어 있는 람다함수를 실행하여 반환값으로 tea가 나옴
+			auto tea = make_unique<Tea>();
+			tea->prepare(200);
+			return tea;
+			};
+		factories["hot_coffee"] = [] {
+			auto coffee = make_unique<Coffee>();
+			coffee->prepare(50);
+			return coffee;
+			};
+	}
+
+	unique_ptr<HotDrink> make_drink(const string& name)
+	{
+		return factories[name]();
 	}
 };
