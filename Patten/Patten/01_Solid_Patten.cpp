@@ -1,8 +1,6 @@
-#pragma once
-#include <iostream>
 #include "01_Solid_Patten.h"
 
-void Solid_main()
+void solid_main()
 {
 	// 01. Solid Patten
 	// SRP
@@ -24,6 +22,4 @@ void Solid_main()
 	{
 		cout << x->name << " is green" << endl;
 	}
-
-
 }

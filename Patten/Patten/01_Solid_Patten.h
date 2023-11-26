@@ -5,6 +5,7 @@
 #include <string>
 //#include <boost/lexical_cast.hpp>
 using namespace std;
+void solid_main();
 
 // SRP : 단일 책임원칙 = manager구현
 struct Journal

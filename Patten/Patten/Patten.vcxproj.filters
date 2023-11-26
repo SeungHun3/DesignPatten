@@ -24,9 +24,6 @@
     <ClInclude Include="03_Factory.h">
       <Filter>Chapter</Filter>
     </ClInclude>
-    <ClInclude Include="01_Soild_main.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text">
@@ -37,16 +34,13 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="03_Factory_main.h">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="02_Builder_main.h">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="02_Builder.cpp">
       <Filter>Chapter</Filter>
     </ClCompile>
     <ClCompile Include="03_Factory.cpp">
+      <Filter>Chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="01_Solid_Patten.cpp">
       <Filter>Chapter</Filter>
     </ClCompile>
   </ItemGroup>

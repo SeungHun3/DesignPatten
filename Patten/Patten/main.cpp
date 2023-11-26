@@ -1,14 +1,12 @@
-#include "01_Soild_main.h"
-#include "02_Builder_main.h"
-#include "03_Factory_main.h"
+#include "01_Solid_Patten.h"
+#include "02_Builder.h"
+#include "03_Factory.h"
 
 int main()
 {
-	//Solid_main();
-	//Builder_main();
-	Factory_main();
-	auto drink_factory = make_unique<DrinkFactory>();
-	auto tea = drink_factory->make_drink("hot_tea");
+	solid_main();
+	builder_main();
+	factory_main();
 
 
 	return 0;

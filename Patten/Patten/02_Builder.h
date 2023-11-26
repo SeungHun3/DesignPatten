@@ -5,6 +5,8 @@
 
 using namespace std;
 
+void builder_main();
+
 // ´Ü¼ø ºô´õ, Èå¸§½Ä ºô´õ
 struct HtmlBuilder;
 

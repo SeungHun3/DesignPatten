@@ -2,7 +2,7 @@
 #include <iostream>
 #include <map>
 using namespace std;
-
+void factory_main();
 
 enum class PointType
 {

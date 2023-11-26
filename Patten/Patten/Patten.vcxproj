@@ -130,16 +130,14 @@
     <ClInclude Include="02_Builder.h" />
     <ClInclude Include="01_Solid_Patten.h" />
     <ClInclude Include="03_Factory.h" />
-    <ClInclude Include="01_Soild_main.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="01_Solid_Patten.cpp" />
     <ClCompile Include="02_Builder.cpp" />
-    <ClCompile Include="02_Builder_main.h" />
     <ClCompile Include="03_Factory.cpp" />
-    <ClCompile Include="03_Factory_main.h" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
