@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClInclude Include="02_Builder.h" />
     <ClInclude Include="01_Solid_Patten.h" />
-    <ClInclude Include="03_factory.h" />
+    <ClInclude Include="03_Factory.h" />
     <ClInclude Include="01_Soild_main.h" />
   </ItemGroup>
   <ItemGroup>
