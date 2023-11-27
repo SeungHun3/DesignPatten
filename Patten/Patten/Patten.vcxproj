@@ -131,6 +131,7 @@
     <ClInclude Include="01_Solid_Patten.h" />
     <ClInclude Include="03_Factory.h" />
     <ClInclude Include="04_ProtoType.h" />
+    <ClInclude Include="05_Singleton.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text" />
@@ -141,6 +142,7 @@
     <ClCompile Include="03_Factory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="04_ProtoType.cpp" />
+    <ClCompile Include="05_Singleton.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

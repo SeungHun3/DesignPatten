@@ -27,6 +27,9 @@
     <ClInclude Include="04_ProtoType.h">
       <Filter>Chapter</Filter>
     </ClInclude>
+    <ClInclude Include="05_Singleton.h">
+      <Filter>Chapter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text">
@@ -44,6 +47,9 @@
       <Filter>Chapter</Filter>
     </ClCompile>
     <ClCompile Include="01_Solid_Patten.cpp">
+      <Filter>Chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="05_Singleton.cpp">
       <Filter>Chapter</Filter>
     </ClCompile>
     <ClCompile Include="04_ProtoType.cpp">
