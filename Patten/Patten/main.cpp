@@ -4,6 +4,7 @@
 #include "04_ProtoType.h"
 #include "05_Singleton.h"
 #include "07_Bridge.h"
+#include "08_Composite.h"
 
 int main()
 {
@@ -12,7 +13,7 @@ int main()
 	//factory_main();
 	//proto_main();
 	//singleton_main();
-	bridge_main();
-
+	//bridge_main();
+	composite_main();
 	return 0;
 }

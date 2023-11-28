@@ -133,6 +133,7 @@
     <ClInclude Include="04_ProtoType.h" />
     <ClInclude Include="05_Singleton.h" />
     <ClInclude Include="07_Bridge.h" />
+    <ClInclude Include="08_Composite.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text" />
@@ -142,6 +143,7 @@
     <ClCompile Include="02_Builder.cpp" />
     <ClCompile Include="03_Factory.cpp" />
     <ClCompile Include="07_Bridge.cpp" />
+    <ClCompile Include="08_Composite.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="04_ProtoType.cpp" />
     <ClCompile Include="05_Singleton.cpp" />
