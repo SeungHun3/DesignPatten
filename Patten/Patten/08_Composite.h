@@ -104,3 +104,71 @@ struct Group : GraphicObject
 	}
 	
 };
+
+// 뉴럴 네트워크
+
+struct Neuron;
+//////////////////////////////////////////////////////////
+// 03
+// 템플릿으로 만든이유 => this를 순회하기 위해 Self를 사용
+template <typename Self>
+struct SomeNeurons // Neuron, Neuron을 상속받은 레이어
+{
+	template <typename T> void connect_to(T& other)
+	{
+		// 지정받은 타입 T(Neuron)의 other에 대해 *this를 순회하며 other의 뉴런을 연결
+		for (Neuron& from : *static_cast<Self*>(this))
+		{
+			for (Neuron& to : other)
+			{
+				from.out.push_back(&to);
+				to.in.push_back(&from);
+			}
+		}
+	}
+};
+//////////////////////////////////////////////////////////
+// 01
+struct Neuron : SomeNeurons<Neuron>
+{
+	vector<Neuron*> in, out;
+	unsigned int id;
+	Neuron()
+	{
+		static int id = 1;
+		this->id = id++; // 전역변수를 사용해 생성시마다 고유의 id를 부여
+	}
+	// 다른 뉴런과 연결되도록
+	void simple_connect_to(Neuron& _other)
+	{
+		out.push_back(&_other);
+		_other.in.push_back(this);
+	}
+	// 뉴런레이어는 vector를 상속받고 있어 begin, end iterator가 있지만 Neuron은 없다
+	// 자기 자신을 순회할 수 있도록 따로 구현
+	Neuron* begin() { return this; }
+	Neuron* end() { return this + 1; }
+};
+// connect_to함수는 뉴런과의 연결만 할수있다
+
+//////////////////////////////////////////////////////////
+//02
+// 벡터를 상속받은 layer 구성
+struct NeuronLayer : vector<Neuron>, SomeNeurons<NeuronLayer>
+	//멤버 변수: NeuronLayer는 vector<Neuron>를 상속하므로, vector의 모든 멤버 변수 및 함수를 상속함
+	//			동적 배열의 크기 조절, 요소에 접근하는 등의 작업 수행
+	//멤버 함수 : NeuronLayer 객체는 vector의 멤버 함수들을 직접 호출할 수 있다. ex) push_back 함수를 사용해 Neuron을 레이어에 추가할 수 있음.
+	//NeuronLayer layer;
+	//layer.push_back(Neuron());
+{
+	NeuronLayer(int count)
+	{
+		while ( 0 < count--)
+		{
+			emplace_back(Neuron{});
+		}
+	}
+};
+
+// 레이어와도 연결할 수 있는 함수 필요
+// => 베이스클래스에 연결함수를 만들고 다중상속을 이용함
