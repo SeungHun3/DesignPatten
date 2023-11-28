@@ -30,6 +30,9 @@
     <ClInclude Include="05_Singleton.h">
       <Filter>Chapter</Filter>
     </ClInclude>
+    <ClInclude Include="07_Bridge.h">
+      <Filter>Chapter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text">
@@ -53,6 +56,9 @@
       <Filter>Chapter</Filter>
     </ClCompile>
     <ClCompile Include="04_ProtoType.cpp">
+      <Filter>Chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="07_Bridge.cpp">
       <Filter>Chapter</Filter>
     </ClCompile>
   </ItemGroup>

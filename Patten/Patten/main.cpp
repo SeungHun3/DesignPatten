@@ -3,6 +3,7 @@
 #include "03_Factory.h"
 #include "04_ProtoType.h"
 #include "05_Singleton.h"
+#include "07_Bridge.h"
 
 int main()
 {
@@ -10,7 +11,8 @@ int main()
 	//builder_main();
 	//factory_main();
 	//proto_main();
-	singleton_main();
+	//singleton_main();
+	bridge_main();
 
 	return 0;
 }
