@@ -36,6 +36,9 @@
     <ClInclude Include="08_Composite.h">
       <Filter>Chapter</Filter>
     </ClInclude>
+    <ClInclude Include="09_Decorator.h">
+      <Filter>Chapter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="note.text">
@@ -65,6 +68,9 @@
       <Filter>Chapter</Filter>
     </ClCompile>
     <ClCompile Include="08_Composite.cpp">
+      <Filter>Chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="09_Decorator.cpp">
       <Filter>Chapter</Filter>
     </ClCompile>
   </ItemGroup>

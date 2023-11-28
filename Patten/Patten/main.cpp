@@ -5,6 +5,7 @@
 #include "05_Singleton.h"
 #include "07_Bridge.h"
 #include "08_Composite.h"
+#include "09_Decorator.h"
 
 int main()
 {
@@ -14,6 +15,7 @@ int main()
 	//proto_main();
 	//singleton_main();
 	//bridge_main();
-	composite_main();
+	//composite_main();
+	decorator_main();
 	return 0;
 }
