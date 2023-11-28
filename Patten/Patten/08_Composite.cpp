@@ -26,9 +26,10 @@ void composite_main()
 
 	NeuronLayer l1{ 5 };
 	Neuron n3;
-	l1.connect_to(n3); // 뉴런, 레이어 연결
+	l1.connect_to<Neuron>(n3); // 레이어, 뉴런 연결 // l1.connect_to(n3); 으로 해도 컴파일러가 알아서 처리해줌
+	n3.connect_to<NeuronLayer>(l1); // 뉴런, 레이어 연결
 
 	NeuronLayer l2{ 2 }, l3{ 3 };
-	l2.connect_to(l3); // 레이어, 레이어 연결
+	l2.connect_to<NeuronLayer>(l3); // 레이어, 레이어 연결
 
 }
