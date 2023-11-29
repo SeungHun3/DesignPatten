@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <functional>
 
 using namespace std;
 void decorator_main();
@@ -130,3 +131,103 @@ struct Transparency_template : T
 	{
 	}
 };
+
+// 함수형 데커레이터
+// 로그를 찍어야할 상황이 온다면 => 로깅컴포넌트에 람다를 넘김
+
+struct Logger
+{
+	function<void()> func;
+	string name;
+	Logger(const function<void()>& _func, const string& _name)
+		: func{ _func }
+		, name{ _name }
+	{
+		cout << "Create Logger : " << name << endl;
+	}
+	~Logger() 
+	{
+		cout << "Delete Logger : " << name << endl;
+	}
+	void operator()() const //Logger myLogger; 이 있을때 myLogger();시 호출
+	{
+		cout << "Enter : " << name << endl;
+		func();
+		cout << "Exit : " <<name<< endl;
+	}
+};
+
+// 템플릿을 이용한 로거 만들기
+// 템플릿 클래스 구현
+template<typename Func>
+struct Logger2
+{
+	Func func; // function으로 전달하지 않고 인자로 전달받음
+	string name;
+	Logger2(const Func& _func, const string& _name)
+		: func{ _func }
+		, name{ _name }
+	{
+		cout << "Create Logger2 : " << name << endl;
+	}
+	~Logger2()
+	{
+		cout << "Delete Logger2 : " << name << endl;
+	}
+	void operator()() const 
+	{
+		cout << "Enter : " << name << endl;
+		func();
+		cout << "Exit : " << name << endl;
+	}
+};
+// 생성자 통해 만들 수 있지만 특정클래스를 쓰지않아도 되는 호출함수 구현
+template <typename Func>
+auto make_logger2(Func _func, const string& _name)
+{
+	return Logger2<Func>{_func, _name};
+}
+
+// 여러 함수에 로그기능을 추가하는 방법 ...여러 매개변수를 Args로 재정의
+// int add(int a, int b){return a+b}; 라는 함수가 있다면
+//  R    ... 으로 들어옴 ... 은 int, int 이다
+template <typename R, typename... Args> 
+struct Logger3
+{
+	function<int(int, int)> addFunction = [](int a, int b) { return a + b; };
+	function<R(Args...)> func;
+	string name;
+
+	Logger3(function<R(Args...)> _func, const string& _name)
+		: func{ _func }
+		, name{ _name }
+	{
+		cout << "Create Logger3" << endl;
+	}
+	R operator() (Args ...args)
+	{
+		cout << "Enter : " << name << endl;
+		/*int*/ R result = func(args...); /*함수실행 후 결과 값*/
+		cout << "Exit : " << name << endl;
+		return result;
+	}
+
+	~Logger3()
+	{
+		cout << "Delete Logger3" << endl;
+	}
+};
+template <typename R, typename ... Args>
+auto make_logger3(R(*func)(Args...),const string& name)
+{
+	// 함수의 return 자료형 int = R
+	// 함수의 주소 *func
+	// 함수의 매개변수 ... = int, int
+	return Logger3<R,Args...>(function<R(Args...)>(func), name);
+	//           템플릿 자료형          호출인자1          호출인자2
+}
+inline int add(int a, int b)
+{
+	cout << "add 함수실행 : " << a + b << endl;;
+	return a + b;
+}

@@ -163,3 +163,31 @@ print 의 첫 번째 인자는 1 이므로 T 는 int 로 추론되고, arg 에는 1 이 된다. 그리�
 
 => print(args...);
 따라서 위 args... 에는 print 에 전달되었던 나머지 인자들이 재귀를 돌며 쭈르륵 호출됨
+
+
+===========================================================
+//템플릿 ... 사용법 : 매개변수 팩(... Args) 으로 받아 => arg 인자를 팩(...)으로 넘겨줌 args...
+
+// 최우선으로 호출되는 함수
+template<typename... Args>
+int add(Args... args) {
+	
+	return add_impl(args...); => 매개변수 팩으로 구성되었을때 
+}
+
+template<typename T, typename... Args>
+T add_impl(T first, Args... rest) {
+	return first + add_impl(rest...); => 팩킹을 하며 재귀
+}
+
+template<typename T>
+T add_impl(T arg) {    => 매개변수팩이 없을때
+	return arg;  
+}
+
+int main()
+{
+	int result = add(1, 2, 3, 4);
+	std::cout << "더하기 결과: " << result << std::endl;
+	return 0;
+}
